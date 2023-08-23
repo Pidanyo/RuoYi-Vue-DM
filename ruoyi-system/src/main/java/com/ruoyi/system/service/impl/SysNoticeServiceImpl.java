@@ -2,8 +2,7 @@ package com.ruoyi.system.service.impl;
 
 import java.util.List;
 
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.util.CharsetUtil;
+import com.ruoyi.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.domain.SysNotice;
@@ -31,7 +30,7 @@ public class SysNoticeServiceImpl implements ISysNoticeService
     public SysNotice selectNoticeById(Long noticeId)
     {
         SysNotice sysNotice = noticeMapper.selectNoticeById(noticeId);
-        sysNotice.setNoticeContent(Convert.hexToStr(sysNotice.getNoticeContent(), CharsetUtil.CHARSET_UTF_8));
+        sysNotice.setNoticeContent(StringUtils.hexToStr(sysNotice.getNoticeContent(), "UTF-8"));
         return sysNotice;
 //        return noticeMapper.selectNoticeById(noticeId);
     }
