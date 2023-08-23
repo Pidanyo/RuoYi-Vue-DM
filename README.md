@@ -6,7 +6,7 @@
 
    Sys_MenuMapper.xml  中query的引号去掉
 
-3. cast 转换取消  16进制须手动转换成字符串
+3. cast 转换取消  16进制须手动转换成字符串 （DM中无法将CLOB转换成字符串类型）
 
 4. 在 `MySQL` 中使用的函数 `find_in_set` 迁移到`DM8`后报错。
 
@@ -77,4 +77,5 @@ commit;
 - 查询语句中的值类型用’括起来，不能用"
 - 达梦limit最大值9223372036854775807
 - if(true,2,3)  第二和第三个参数必须是int类型
-- 使用DBMS_LOB.SUBSTR函数转换clob类型的数据到字符串
+- 使用DBMS_LOB.SUBSTR函数转换clob类型的数据到字符串 例如：		select utl_raw.cast_to_varchar2(dbms_lob.substr(notice_content)) from "VUEDM"."SYS_NOTICE"; （缺点 转换后的字符集是数据库的本身的字符集，无法得到UTF-8字符集字符串）
+
