@@ -611,4 +611,26 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils
         }
         return sb.toString();
     }
+    /**
+     *  十六进制转换成字符串
+     * @param s 十六进制字符串
+     * @param charset 字符编码
+     * @return 转换后的字符串
+     */
+    public static String hexToStr(String s, String charset) {
+        byte[] baKeyword = new byte[s.length() / 2];
+        for (int i = 0; i < baKeyword.length; i++) {
+            try {
+                  baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(i * 2, i * 2 + 2), 16));
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+        }
+        try {
+             s = new String(baKeyword, charset);
+        } catch (Exception e1) {
+         e1.printStackTrace();
+        }
+        return s;
+    }
 }
